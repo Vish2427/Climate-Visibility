@@ -1,9 +1,9 @@
 # Climate-Visibility
-##Problem Statement
+## Problem Statement
  To build a regression model to predict the visibility distance based on the given different climatic indicators in the training data. 
-#Architecture
+# Architecture
 ![image](https://user-images.githubusercontent.com/98541876/183281280-a22f1ed2-48ef-45c0-a698-507efb4fc65a.png)
-#Data Description
+# Data Description
 Data Description: This dataset predicts the visibility distance based on the different indicators as below:
 
 1.	VISIBILITY - Distance from which an object can be seen.
@@ -19,7 +19,7 @@ Data Description: This dataset predicts the visibility distance based on the dif
 Apart from training files, we also require a "schema" file from the client, which contains all the relevant information about the training files such as:
 Name of the files, Length of Date value in FileName, Length of Time value in FileName, Number of Columns, Name of the Columns, and their datatype.
  
-#Data Validation 
+# Data Validation 
 In this step, we perform different sets of validation on the given set of training files.  
 1.	 Name Validation- We validate the name of the files based on the given name in the schema file. We have created a regex pattern as per the name given in the schema file to use for validation. After validating the pattern in the name, we check for the length of date in the file name as well as the length of time in the file name. If all the values are as per requirement, we move such files to "Good_Data_Folder" else we move such files to "Bad_Data_Folder."
 
@@ -35,13 +35,13 @@ In this step, we perform different sets of validation on the given set of traini
 
 
 
-#Data Insertion in Database
+# Data Insertion in Database
  
 1) Database Creation and connection - Create a database with the given name passed. If the database is already created, open the connection to the database. 
 2) Table creation in the database - Table with name - "Good_Data", is created in the database for inserting the files in the "Good_Data_Folder" based on given column names and datatype in the schema file. If the table is already present, then the new table is not created and new files are inserted in the already present table as we want training to be done on new as well as old training files.     
 3) Insertion of files in the table - All the files in the "Good_Data_Folder" are inserted in the above-created table. If any file has invalid data type in any of the columns, the file is not loaded in the table and is moved to "Bad_Data_Folder".
  
-#Model Training 
+# Model Training 
 1) Data Export from Db - The data in a stored database is exported as a CSV file to be used for model training.
 2) Data Preprocessing   
    a) Drop columns not useful for training the model. Such columns were selected while doing the EDA.
@@ -52,7 +52,7 @@ In this step, we perform different sets of validation on the given set of traini
    To train data in different clusters. The Kmeans model is trained over preprocessed data and the model is saved for further use in prediction.
 4) Model Selection - After clusters are created, we find the best model for each cluster. We are using two algorithms, "Decision Tree Regressor" and "XGBoost regressor". For each cluster, both the algorithms are passed with the best parameters derived from GridSearch. We calculate the Rsquared scores for both models and select the model with the best score. Similarly, the model is selected for each cluster. All the models for every cluster are saved for use in prediction. 
  
-#Prediction Data Description
+# Prediction Data Description
  
 Client will send the data in multiple set of files in batches at a given location. Data will contain climate indicators in 10 columns.
 Apart from prediction files, we also require a "schema" file from client which contains all the relevant information about the training files such as:
@@ -70,7 +70,7 @@ Data Insertion in Database
 3) Insertion of files in the table - All the files in the "Good_Data_Folder" are inserted in the above-created table. If any file has invalid data type in any of the columns, the file is not loaded in the table and is moved to "Bad_Data_Folder".
 
 
-#Prediction 
+# Prediction 
  
 1) Data Export from Db - The data in the stored database is exported as a CSV file to be used for prediction.
 2) Data Preprocessing   

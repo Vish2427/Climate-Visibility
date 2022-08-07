@@ -1,6 +1,6 @@
 # Climate-Visibility
 ##Problem Statement
-To build a regression model to predict the visibility distance based on the given different climatic indicators in the training data. 
+ To build a regression model to predict the visibility distance based on the given different climatic indicators in the training data. 
 #Architecture
 ![image](https://user-images.githubusercontent.com/98541876/183281280-a22f1ed2-48ef-45c0-a698-507efb4fc65a.png)
 #Data Description
